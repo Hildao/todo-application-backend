@@ -47,38 +47,29 @@ app.get('/tasks', function (request, response) {
       },
     ],
   });
-  response.json('tasks');
 });
 
-app.delete('/tasks/:taskId', function (request, response) {
+app.delete('/tasks/:id', function (request, response) {
+  const id = request.params.id;
   //  Should delete the task with the specified ID from the database
   //  For now, just send back a text message (and status 200)
 
-  const taskIdToBeDeleted = request.params.taskId;
-  let someResponse = {
-    message: 'You issued a delete request for ID: ' + taskIdToBeDeleted
-  };
-
-  if (taskIdToBeDeleted > 3) {
-    response.status(404);
-    someResponse = {
-      message: 'Task ' + taskIdToBeDeleted + ' does not exist'
-    };
-  }
-  response.json(someResponse);
+  response.status(200).send(`Delete task with ID ${id}!`);
 });
 
 app.post('/tasks', function (request, response) {
+  const data = request.body;
   //  Should INSERT INTO the database the new task
   //  For now, just send back a text message (and status 200) "New task saved"
-  response.status(200).send('New task saved');
+  response.status(201).send('Insert new task');
 });
 
-app.put('/tasks/:taskId', function (request, response) {
+app.put('/tasks/:id', function (request, response) {
+  const id = request.params.id;
   //  Should UPDATE a task in the DB
   //  For now, just send back a text message (and status 200)
 
-  response.status(200).send('You issued an update request for ID: ');
+  response.status(200).send(`Update task with ID ${id}`);
 });
 
 module.exports.app = serverlessHttp(app);
