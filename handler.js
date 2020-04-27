@@ -5,6 +5,7 @@
 const serverlessHttp = require('serverless-http');
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 // Logically separate 4 sections of code according to the method of the HTTP request received
 
@@ -12,16 +13,10 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-
-// https://fjr832ry.api-gateway.aws.com/tasks (backend URL example)
-// https://harrietty.github.com/todos_frontend (frontend URL example)
+app.use(bodyParser.json());
 
 app.get('/tasks', function (request, response) {
   // Should make a SELECT * FROM Tasks query to the DB and return the results
-  // For now, it's just going to return some dummy data
-
-  // Request has loads of info about the request
-  // Resposne has some useful methods for sending a response
   response.status(200).send({
     tasks: [
       {
@@ -52,24 +47,20 @@ app.get('/tasks', function (request, response) {
 app.delete('/tasks/:id', function (request, response) {
   const id = request.params.id;
   //  Should delete the task with the specified ID from the database
-  //  For now, just send back a text message (and status 200)
-
-  response.status(200).send(`Delete task with ID ${id}!`);
+  response.status(200).send(`Deleted task with ID ${id}!`);
 });
 
 app.post('/tasks', function (request, response) {
-  const data = request.body;
+  const data = request.body;  //{}
   //  Should INSERT INTO the database the new task
-  //  For now, just send back a text message (and status 200) "New task saved"
-  response.status(201).send('Insert new task');
+  response.status(201).send(`New task of ${data.text} created`);
 });
 
 app.put('/tasks/:id', function (request, response) {
   const id = request.params.id;
+  const data = request.body;
   //  Should UPDATE a task in the DB
-  //  For now, just send back a text message (and status 200)
-
-  response.status(200).send(`Update task with ID ${id}`);
+  response.status(200).send(`Updated task with ID ${id} and data ${JSON.stringify(data)}`);
 });
 
 module.exports.app = serverlessHttp(app);
