@@ -31,8 +31,6 @@ Responds with JSON containing all tasks in the Database.
 
 ---
 
----
-
 POST /tasks
 
 https://6aanbpmsk6.execute-api.eu-west-1.amazonaws.com/dev/tasks
@@ -48,8 +46,6 @@ Will create a new task when sent a JSON payload in the format:
 
 ---
 
----
-
 DELETE /tasks/:taskId
 
 https://6aanbpmsk6.execute-api.eu-west-1.amazonaws.com/dev/tasks/:taskId
@@ -58,9 +54,8 @@ Deletes the task of the given ID.
 
 ---
 
----
-
 PUT /tasks/:taskId
+
 https://6aanbpmsk6.execute-api.eu-west-1.amazonaws.com/dev/tasks/:taskId
 
 Will update a task when sent a JSON payload in the format:
