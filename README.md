@@ -21,34 +21,54 @@ Endpoints
 
 The API exposes the following endpoints:
 
+---
+
 GET /tasks
+
 https://6aanbpmsk6.execute-api.eu-west-1.amazonaws.com/dev/tasks
 
 Responds with JSON containing all tasks in the Database.
 
+---
+
+---
+
 POST /tasks
+
 https://6aanbpmsk6.execute-api.eu-west-1.amazonaws.com/dev/tasks
 
 Will create a new task when sent a JSON payload in the format:
+```JSON
+    {
+    "Description": "Go for a run",
+    "DueDate": "2020-05-23",
+    "Completed": false
+    }
+```
 
-{
-	"Description": "Go for a run",
-	"DueDate": "2020-05-23",
-	"Completed": false
-}
+---
+
+---
 
 DELETE /tasks/:taskId
+
 https://6aanbpmsk6.execute-api.eu-west-1.amazonaws.com/dev/tasks/:taskId
 
 Deletes the task of the given ID.
+
+---
+
+---
 
 PUT /tasks/:taskId
 https://6aanbpmsk6.execute-api.eu-west-1.amazonaws.com/dev/tasks/:taskId
 
 Will update a task when sent a JSON payload in the format:
 
-{
-	"Description": "Go for a run",
-	"DueDate": "2020-05-23",
-	"Completed": true
-}
+```JSON
+    {
+    "Description": "Go for a run",
+    "DueDate": "2020-05-23",
+    "Completed": true
+    }
+```
